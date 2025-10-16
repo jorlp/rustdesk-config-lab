@@ -7,6 +7,7 @@
 
 $ErrorActionPreference = 'Stop'
 # === Télécharger et appliquer le fichier TOML depuis GitHub ===
+$tomlUrl = "https://raw.githubusercontent.com/jorlp/rustdesk-config-lab/main/config.toml"
 foreach ($path in @($userTomlPath, $svcTomlPath)) {
     $dir = Split-Path $path
     if (-not (Test-Path $dir)) { New-Item $dir -ItemType Directory -Force | Out-Null }

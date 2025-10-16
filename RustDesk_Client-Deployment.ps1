@@ -19,7 +19,8 @@ foreach ($path in @($userTomlPath, $svcTomlPath)) {
         Write-Output "❌ Impossible de récupérer la configuration TOML depuis GitHub."
     }
 }
-
+# Set password
+$passwordPlain = Read-Host "🔐 Entrez le mot de passe RustDesk"
 # === Logging ===
 $logFile = "C:\Temp\rustdesk_combined.log"
 function Write-Log {
@@ -38,7 +39,7 @@ $logDir            = "$env:APPDATA\RustDesk\log"
 $rendezvousAddress = "infra-jloupias.ddns.net"
 $relayPort         = "21117"
 $publicKey         = "tACr61l6sK05akuEMUg5vfmrt7wj9EaYgwq4CX59Bto="
-$passwordPlain     = "Buddha2912$!"
+$passwordPlain     = ${password}
 
 $userTomlPath   = "C:\Users\$env:USERNAME\AppData\Roaming\RustDesk\config\RustDesk2.toml"
 $svcTomlPath    = "C:\Windows\ServiceProfiles\LocalService\AppData\Roaming\RustDesk\config\RustDesk2.toml"

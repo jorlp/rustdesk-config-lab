@@ -53,9 +53,8 @@ serial = 0
 [options]
 custom-rendezvous-server = '$rendezvousAddress'
 key = '${publicKey}'
-whitelist = '192.168.1.1,10.0.0.1,172.16.0.0/16'
 direct-server = 'Y'
-direct-access-port = '21118'
+direct-access-port = '21117'
 "@
 
 # === Ensure Admin Privileges ===

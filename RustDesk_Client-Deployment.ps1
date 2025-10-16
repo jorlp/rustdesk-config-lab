@@ -5,7 +5,6 @@
 # sets access password, and validates via logs.
 # ============================================================
 
-$ErrorActionPreference = 'Stop'
 # === Télécharger et appliquer le fichier TOML depuis GitHub ===
 $tomlUrl = "https://raw.githubusercontent.com/jorlp/rustdesk-config-lab/main/config.toml"
 foreach ($path in @($userTomlPath, $svcTomlPath)) {

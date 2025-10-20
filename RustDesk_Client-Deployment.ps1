@@ -13,14 +13,14 @@ foreach ($path in @($userTomlPath, $svcTomlPath)) {
 
     try {
         Invoke-WebRequest -Uri $tomlUrl -OutFile $path -UseBasicParsing
-        Write-Log "✅ Fichier TOML téléchargé et appliqué à $path."
+        Write-Log "Fichier TOML téléchargé et appliqué à $path."
     } catch {
-        Write-Log "❌ Échec du téléchargement du fichier TOML : $_"
-        Write-Output "❌ Impossible de récupérer la configuration TOML depuis GitHub."
+        Write-Log "Échec du téléchargement du fichier TOML : $_"
+        Write-Output "Impossible de récupérer la configuration TOML depuis GitHub."
     }
 }
 # Set password
-$passwordPlain = Read-Host "🔐 Entrez le mot de passe RustDesk"
+$passwordPlain = Read-Host "Entrez le mot de passe RustDesk"
 # === Logging ===
 $logFile = "C:\Temp\rustdesk_combined.log"
 function Write-Log {
@@ -60,7 +60,7 @@ direct-access-port = '21117'
 # === Ensure Admin Privileges ===
 if (-not ([Security.Principal.WindowsPrincipal] `
     [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
-    Write-Error "❌ This script must be run as Administrator."
+    Write-Error "This script must be run as Administrator."
     exit 1
 }
 
@@ -120,20 +120,20 @@ if (Test-Path $logDir) {
     $confirmed = $false
     foreach ($log in $recentLogs) {
         if (Select-String -Path $log.FullName -Pattern 'password') {
-            Write-Log "✅ Password activity found in $($log.Name)"
-            Write-Output "✅ Password set successfully (confirmed in log)."
+            Write-Log "Password activity found in $($log.Name)"
+            Write-Output "Password set successfully (confirmed in log)."
             $confirmed = $true
             break
         }
     }
     if (-not $confirmed) {
-        Write-Log "⚠️ Password not confirmed in logs."
-        Write-Output "⚠️ Could not confirm password in log."
+        Write-Log "Password not confirmed in logs."
+        Write-Output "Could not confirm password in log."
     }
 } else {
-    Write-Log "⚠️ RustDesk log directory not found."
-    Write-Output "⚠️ Log directory missing."
+    Write-Log "RustDesk log directory not found."
+    Write-Output "Log directory missing."
 }
 
-Write-Log "✅ Script finished."
-Write-Output "✅ RustDesk installation and configuration completed."
+Write-Log "Script finished."
+Write-Output "RustDesk installation and configuration completed."

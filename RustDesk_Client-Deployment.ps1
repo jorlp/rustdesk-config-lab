@@ -41,8 +41,8 @@ $relayPort         = "21117"
 $publicKey         = "tACr61l6sK05akuEMUg5vfmrt7wj9EaYgwq4CX59Bto="
 $passwordPlain     = ${passwordPlain}
 
-$userTomlPath   = "C:\Users\$env:USERNAME\AppData\Roaming\RustDesk\config\RustDesk2.toml"
-$svcTomlPath    = "C:\Windows\ServiceProfiles\LocalService\AppData\Roaming\RustDesk\config\RustDesk2.toml"
+$userTomlPath   = "C:\Users\$env:USERNAME\AppData\Roaming\RustDesk\config\config.toml"
+$svcTomlPath    = "C:\Windows\ServiceProfiles\LocalService\AppData\Roaming\RustDesk\config\config.toml"
 
 # === Configuration Template ===
 $tomlContent = @"

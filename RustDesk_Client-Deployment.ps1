@@ -23,12 +23,18 @@ foreach ($path in @($userTomlPath, $svcTomlPath)) {
 $passwordPlain = Read-Host "Entrez le mot de passe RustDesk"
 # === Logging ===
 $logFile = "C:\Temp\rustdesk_combined.log"
-function Write-Log {
-    param([string]$msg)
-    $ts = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    "$ts - $msg" | Out-File -Append -FilePath $logFile
-}
 
+function Write-Log {
+    param(
+        [string]$Message,
+        [string]$Level = "INFO"
+    )
+
+    $timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
+    $logLine = "[$timestamp] [$Level] $Message"
+
+    Write-Output $logLine
+}
 # === General Variables ===
 $installerPath     = "C:\Temp\rustdesk.exe"
 $downloadUrl       = "https://github.com/rustdesk/rustdesk/releases/download/1.4.2/rustdesk-1.4.2-x86_64.exe"
@@ -90,6 +96,9 @@ if ($service) {
     Get-Process rustdesk -ErrorAction SilentlyContinue | Stop-Process -Force
 }
 Start-Sleep -Seconds 3
+
+$userTomlPath   = "C:\Users\$env:USERNAME\AppData\Roaming\RustDesk\config\config.toml"
+$svcTomlPath    = "C:\Windows\ServiceProfiles\LocalService\AppData\Roaming\RustDesk\config\config.toml"
 
 # === Apply Configuration ===
 foreach ($path in @($userTomlPath, $svcTomlPath)) {
